@@ -21,7 +21,7 @@ class ListPage extends GetView<ListController> {
             setTile("Chairs",textStyle),
                     ],),
           )
-    ));
+    ),);
   }
 
   Card setTile(String name, TextStyle textStyle) {
