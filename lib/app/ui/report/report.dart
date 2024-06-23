@@ -58,17 +58,19 @@ class ReportPage extends GetView<ReportController> {
                 sizedBox,
                 Center(
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue),
-                      onPressed: () => null,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, bottom: 15, left: 30, right: 30),
-                        child: Text(
-                          "Submit",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      )),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    onPressed: () {},
+                    child: const Padding(
+                      padding: EdgeInsets.only(
+                          top: 15, bottom: 15, left: 30, right: 30),
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
