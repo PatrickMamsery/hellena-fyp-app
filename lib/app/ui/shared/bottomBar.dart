@@ -12,8 +12,8 @@ class BottomBar extends StatelessWidget {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Report"),
             BottomNavigationBarItem(icon: Icon(Icons.list), label: "List"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.schedule), label: "Schedule"),
+            // BottomNavigationBarItem(
+            //     icon: Icon(Icons.schedule), label: "Schedule"),
           ],
           onTap: (index) => controller.changePage(index),
           type: BottomNavigationBarType.fixed,

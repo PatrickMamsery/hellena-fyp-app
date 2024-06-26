@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ReportPage extends GetView<ReportController> {
+  final ReportController controller = Get.put(ReportController());
   @override
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(
       height: 20,
     );
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.blue,
@@ -34,33 +36,61 @@ class ReportPage extends GetView<ReportController> {
                 input(
                   title: "Name",
                   subtitle: "Enter the name of the property",
+                  controller: controller.name.value,
                 ),
                 sizedBox,
-                input(
-                  title: "Type",
-                  subtitle: "Enter the type of property ",
+                DropdownButton<String>(
+                  // value: controller.type.value,
+                  isExpanded: true,
+                  items: controller.types.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (_) {
+                    controller.type.value = _!;
+                    print("Debug" + _!);
+                  },
                 ),
+                // GetX<ReportController>(builder: (controller) {
+                //   return;
+                // }),
                 sizedBox,
-                input(
-                  title: "Block",
-                  subtitle: "Enter the block the property is located",
+                Container(
+                  child: DropdownButton<String>(
+                    // value: controller.block.value,
+                    isExpanded: true,
+                    items: controller.blocks.map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (_) {
+                      controller.block.value = _!;
+                      print("Debug" + _!);
+                    },
+                  ),
                 ),
                 sizedBox,
                 input(
                   title: "Serial Number",
                   subtitle: "Choose the serial number",
+                  controller: controller.serial_number.value,
                 ),
                 sizedBox,
                 input(
                   title: "Description",
                   subtitle: "Enter the description of the damage",
+                  controller: controller.description.value,
                 ),
                 sizedBox,
                 Center(
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue),
-                      onPressed: () => null,
+                      onPressed: () => controller.submit(),
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 15, left: 30, right: 30),
