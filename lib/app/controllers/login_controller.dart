@@ -1,3 +1,4 @@
+import 'package:cpms_app/app/data/services/api_client.dart';
 import 'package:flutter/material.dart';
 
 import '../data/repository/login_repository.dart';
@@ -19,17 +20,27 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  // void submit() {
-  //   var data = {
-  //     "email": email.value.text,
-  //     "password": password.value.text,
-  //   };
+  void submit() {
+    var data = {
+      "email": email.value.text,
+      "password": password.value.text,
+    };
 
-  //   var apiClient = ApiClient(
-  //     url: '/api/login',
-  //   );
-  //   var res = apiClient.postData(data);
-  //   Get.snackbar("Sucess", "Report Created", colorText: Colors.green);
-  //   clear();
-  // }
+    var apiClient = ApiClient(
+      url: '/api/login',
+    );
+    var res = apiClient.postData(data);
+    void submit() {
+      var data = {
+        "email": email.value.text,
+        "password": password.value.text,
+      };
+
+      var apiClient = ApiClient(
+        url: '/api/reports',
+      );
+      var res = apiClient.postData(data);
+      Get.snackbar("Sucess", "Login successfully", colorText: Colors.green);
+    }
+  }
 }
