@@ -1,4 +1,5 @@
 import 'package:cpms_app/app/controllers/login_controller.dart';
+import 'package:cpms_app/app/ui/auth/register.dart';
 import 'package:cpms_app/app/ui/auth/widgets/profile.dart';
 import 'package:cpms_app/app/ui/maintanance/maintenance.dart';
 // import 'package:cpms_app/app/ui/maintanance/maintenance.dart';
@@ -59,7 +60,31 @@ class LoginPage extends GetView<LoginController> {
                                   "Login",
                                   style: TextStyle(color: Colors.white),
                                 ),
-                              ))
+                              )),
+                          sizedBox,
+                          Text("OR"),
+                          sizedBox,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text("If you dont have an account"),
+                              InkWell(
+                                onTap: () {
+                                  // Replace with your navigation code
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RegisterPage()),
+                                  );
+                                },
+                                child: Text(
+                                  " Sign in here",
+                                  style: TextStyle(color: Colors.blue),
+                                ),
+                              )
+                            ],
+                          )
                         ],
                       ),
                     ),

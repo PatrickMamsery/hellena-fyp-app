@@ -16,7 +16,11 @@ class LoginController extends GetxController {
   // get obj => this._obj.value;
   var email = TextEditingController().obs;
   var password = TextEditingController().obs;
-
+  var role = "".obs;
+  var roles = [
+    'Officer',
+    'Reporter',
+  ];
   @override
   void onInit() async {
     // TODO: implement onInit
@@ -27,6 +31,7 @@ class LoginController extends GetxController {
     var data = {
       "email": email.value.text,
       "password": password.value.text,
+      "role": role.value,
     };
 
     var apiClient = ApiClient(
