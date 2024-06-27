@@ -19,7 +19,7 @@ class SignInController extends GetxController {
   var role = "".obs;
   var roles = [
     'Officer',
-    'Reporter',
+    'User',
   ];
   @override
   void onInit() async {
@@ -30,17 +30,16 @@ class SignInController extends GetxController {
   void submit() async {
     var data = {
       "name": name.value.text,
-      "phone": phone.value.text,
       "email": email.value.text,
       "password": password.value.text,
       "role": role.value,
     };
-
     var apiClient = ApiClient(
-      url: '/api/sign_in',
+      url: '/api/register',
     );
     var res = AuthResponse.fromJson(await apiClient.postData(data));
     print(res.data!.user!.role!);
+    Get.snackbar("Sucess", "Registered Successfully");
     Get.to(() => LoginPage());
   }
 }

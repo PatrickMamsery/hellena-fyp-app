@@ -12,7 +12,7 @@ class ReportPage extends GetView<ReportController> {
       height: 20,
     );
     return Scaffold(
-        bottomNavigationBar: BottomBar(),
+        bottomNavigationBar: BottomBar(userId: controller.userId.value!,),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
           backgroundColor: Colors.blue,
@@ -123,7 +123,8 @@ class ReportPage extends GetView<ReportController> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 elevation: 10,
-                                minimumSize: Size(250, 50)),
+                                minimumSize: Size(250, 50),
+                                ),
                             onPressed: () => controller.submit(),
                             child: Padding(
                               padding: const EdgeInsets.only(

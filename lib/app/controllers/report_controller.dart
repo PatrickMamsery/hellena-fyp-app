@@ -6,6 +6,8 @@ import '../data/services/api_client.dart';
 
 class ReportController extends GetxController {
   // final ReportRepository repository;
+   dynamic argumentData = Get.arguments;
+  var userId = "".obs;
   var name = TextEditingController().obs;
   var type = Rx<String?>(null); // Allow type to be null initially
   var block = Rx<String?>(null);
@@ -27,7 +29,7 @@ class ReportController extends GetxController {
 
   @override
   void onInit() async {
-    // TODO: implement onInit
+    argumentData != null ? userId(argumentData[0].toString()) : null;
     print("REPORTS");
     super.onInit();
   }
@@ -39,13 +41,14 @@ class ReportController extends GetxController {
       "property_location": block.value,
       "serial_no": serial_number.value.text,
       "description": description.value.text,
+      "user_id": userId.value,
     };
-
+print(data);
     var apiClient = ApiClient(
       url: '/api/reports',
     );
     var res = apiClient.postData(data);
-    Get.snackbar("Sucess", "Report Created", colorText: Colors.green);
+    Get.snackbar("Sucess", "Report Created");
     clear();
   }
 

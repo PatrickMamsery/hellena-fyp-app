@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BottomBar extends StatelessWidget {
-  final controller = Get.put(BottomNavigationController());
+  //add construct that receives user id
+  final controller = BottomNavigationController();
+
+  final String userId;
+  BottomBar({Key? key, required this.userId}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Obx(() => BottomNavigationBar(
@@ -15,7 +19,7 @@ class BottomBar extends StatelessWidget {
             // BottomNavigationBarItem(
             //     icon: Icon(Icons.schedule), label: "Schedule"),
           ],
-          onTap: (index) => controller.changePage(index),
+          onTap: (index) => controller.changePage(index, userId),
           type: BottomNavigationBarType.fixed,
         ));
   }

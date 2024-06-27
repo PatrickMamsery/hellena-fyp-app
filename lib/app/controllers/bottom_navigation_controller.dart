@@ -7,13 +7,14 @@ import 'package:get/get.dart';
 class BottomNavigationController extends GetxController {
   var currentIndex = 0.obs;
 
+
   final List<Widget> pages = [
     ReportPage(),
     ListPage(),
   ];
 
-  void changePage(int index) {
+  void changePage(int index,String userId) {
     currentIndex.value = index;
-    Get.to(pages[currentIndex.value]);
+    Get.to(()=>pages[currentIndex.value],arguments: userId );
   }
 }

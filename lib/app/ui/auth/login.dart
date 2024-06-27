@@ -26,16 +26,17 @@ class LoginPage extends GetView<LoginController> {
                     child: Padding(
                       padding: EdgeInsets.all(15.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Welcome to"),
-                          sizedBox,
-                          Text(
-                            "CoICT Fault Management System",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 19.0),
-                          ),
-                          sizedBox,
+                          Text("Welcome back!",
+                                style: TextStyle(
+                                    fontSize: 40, fontWeight: FontWeight.bold)),
+                            Text(
+                                "COICT Fault Management System Account", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500 ),),
+                            sizedBox,
+                            sizedBox,
+                            sizedBox,
+                            sizedBox,
                           Text("Please login to your account"),
                           sizedBox,
                           profile(
@@ -49,42 +50,40 @@ class LoginPage extends GetView<LoginController> {
                               subtitle: "Enter your password",
                               controller: controller.password.value),
                           sizedBox,
+                          sizedBox,
                           ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue),
-                              onPressed: () => controller.submit(),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 15, bottom: 15, left: 30, right: 30),
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(color: Colors.white),
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blue,
+                                   minimumSize: Size(150, 50),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    elevation: 0.0
                                 ),
-                              )),
-                          sizedBox,
-                          Text("OR"),
-                          sizedBox,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text("If you dont have an account"),
-                              InkWell(
-                                onTap: () {
-                                  // Replace with your navigation code
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => RegisterPage()),
-                                  );
-                                },
-                                child: Text(
-                                  " Sign in here",
-                                  style: TextStyle(color: Colors.blue),
-                                ),
-                              )
-                            ],
-                          )
+                                onPressed: () => controller.submit(),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 15, bottom: 15, left: 30, right: 30),
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),
+                                  ),
+                                )),
+                            // sizedBox,
+                            TextButton(
+                              onPressed: () {
+                                Get.to(()=> RegisterPage());
+                              },
+                              child: Row(
+                                children: [
+                                  Text("I don't have an account? ",
+                                      style: TextStyle(color: Colors.black),),
+                                  Text("Register",
+                                      style: TextStyle(color: Colors.blue))
+                                ],
+                              ),
+                            ),
+                             
                         ],
                       ),
                     ),

@@ -2,7 +2,6 @@ import 'package:cpms_app/app/data/services/api_client.dart';
 import 'package:cpms_app/app/ui/maintanance/maintenance.dart';
 import 'package:cpms_app/app/ui/report/report.dart';
 import 'package:flutter/material.dart';
-
 import '../data/repository/login_repository.dart';
 import 'package:get/get.dart';
 import '../data/models/auth_response.dart';
@@ -16,6 +15,7 @@ class LoginController extends GetxController {
   // get obj => this._obj.value;
   var email = TextEditingController().obs;
   var password = TextEditingController().obs;
+
   var role = "".obs;
   var roles = [
     'Officer',
@@ -40,9 +40,9 @@ class LoginController extends GetxController {
     var res = AuthResponse.fromJson(await apiClient.postData(data));
     print(res.data!.user!.role!);
     if (res.data!.user!.role! == "Officer") {
-      Get.to(() => MaintenancePage());
+      Get.to(() => MaintenancePage(), arguments: [res.data!.user!.id]);
     } else {
-      Get.to(() => ReportPage());
+      Get.to(() => ReportPage(),arguments: [res.data!.user!.id]);
     }
   }
 }
