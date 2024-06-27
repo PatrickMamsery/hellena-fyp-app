@@ -7,10 +7,10 @@ class MaintenancePage extends GetView<MaintenanceController> {
   final MaintenanceController controller = Get.put(MaintenanceController());
   @override
   Widget build(BuildContext context) {
-    var textStyle = TextStyle(fontWeight: FontWeight.w500, color: Colors.grey);
+    var textStyle = TextStyle(fontWeight: FontWeight.w500, color: Colors.grey[900]);
 
     return Scaffold(
-        appBar: AppBar(title: Text('Maintenance')),
+        appBar: AppBar(title: Text('Maintenance',),actions: [IconButton(onPressed: (){}, icon: Icon(Icons.refresh))],backgroundColor: Colors.blue[500], ),
         body: SafeArea(
             minimum: EdgeInsets.all(10),
             child: Theme(
@@ -20,7 +20,7 @@ class MaintenancePage extends GetView<MaintenanceController> {
                   children: [
                     Center(
                       child: Container(
-                          margin: EdgeInsets.only(bottom: 10.0),
+                          margin: EdgeInsets.symmetric(vertical:  10.0),
                           // height: MediaQuery.of(context).size.height * 0.2, // Covering 20% of the screen height
                           padding: EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
@@ -98,19 +98,27 @@ class MaintenancePage extends GetView<MaintenanceController> {
   }
 
   Card setTile(Report report, TextStyle textStyle) {
+    //get status color [done, Not done, in progress]
+    var color = report.status == "done"
+        ? Colors.green
+        : report.status == "Not done"
+            ? Colors.red
+            : Colors.grey;
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide(color: color),
+      ),
       child: ExpansionTile(
-        title: Text(report.propertyName!),
-        // title: Text('report.propertyName!'),
+        title: Text(report.propertyName!.capitalize!, style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500)),
         subtitle: Text(
           report.status!,
-          // 'report.status!',
-          style: TextStyle(color: Colors.red),
+          style: TextStyle(color: color),
         ),
         children: [
           Container(
             margin: EdgeInsets.all(8.0),
-            color: Color.fromARGB(255, 216, 228, 220),
+            color: Colors.blue[50],
             padding: const EdgeInsets.all(12.0),
             child: Table(
               children: [
@@ -126,7 +134,7 @@ class MaintenancePage extends GetView<MaintenanceController> {
                     "ID",
                     style: textStyle,
                   ),
-                  Text("ABCD123456")
+                  Text(report.serialNumber!)
                 ]),
                 TableRow(children: [
                   Text(
@@ -140,21 +148,21 @@ class MaintenancePage extends GetView<MaintenanceController> {
                     "Reported On",
                     style: textStyle,
                   ),
-                  Text("02/05/2024")
+                  Text(report.reportedOn!)
                 ]),
                 TableRow(children: [
                   Text(
                     "Status",
                     style: textStyle,
                   ),
-                  Text("FIXED", style: TextStyle(color: Colors.green))
+                  Text(report.status!, style: TextStyle(color: color))
                 ]),
                 TableRow(children: [
                   Text(
                     "Details",
                     style: textStyle,
                   ),
-                  Text("A broken right limb kdfk dfkdja adfjkfdj ...")
+                  Text(report.description!)
                 ]),
               ],
             ),
@@ -165,43 +173,6 @@ class MaintenancePage extends GetView<MaintenanceController> {
                   image: AssetImage('assets/table.jpeg'), fit: BoxFit.fill),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                    onPressed: () {},
-                    child: const Row(
-                      children: [
-                        Icon(
-                          Icons.calendar_month,
-                          color: Colors.blue,
-                        ),
-                        Text(
-                          "Schedule Manintance",
-                          style: TextStyle(color: Colors.blue),
-                        )
-                      ],
-                    )),
-                TextButton(
-                  onPressed: () {},
-                  child: const Row(
-                    children: [
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                      Text(
-                        "Fixed",
-                        style: TextStyle(color: Colors.green),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          )
         ],
       ),
     );

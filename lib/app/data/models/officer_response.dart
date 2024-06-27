@@ -59,7 +59,7 @@ class Report {
   String? propertyName;
   String? propertyLocation;
   String? description;
-  // String? serialNumber;
+  String? serialNumber;
   String? reportedOn;
   String? status;
 
@@ -68,6 +68,7 @@ class Report {
       this.propertyName,
       this.propertyLocation,
       this.description,
+      this.serialNumber,
       this.reportedOn,
       this.status});
 
@@ -76,6 +77,7 @@ class Report {
     propertyName = json['property_name'];
     propertyLocation = json['property_location'];
     description = json['description'];
+    serialNumber = json['serial_number'];
     reportedOn = json['reported_on'];
     status = json['status'];
   }
@@ -86,6 +88,7 @@ class Report {
     data['property_name'] = this.propertyName;
     data['property_location'] = this.propertyLocation;
     data['description'] = this.description;
+    data['serial_number'] = this.serialNumber;
     data['reported_on'] = this.reportedOn;
     data['status'] = this.status;
     return data;

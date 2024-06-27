@@ -7,18 +7,18 @@ import '../data/services/api_client.dart';
 class ReportController extends GetxController {
   // final ReportRepository repository;
   var name = TextEditingController().obs;
-  var type = "".obs;
-  var block = "".obs;
+  var type = Rx<String?>(null); // Allow type to be null initially
+  var block = Rx<String?>(null);
   var serial_number = TextEditingController().obs;
   var description = TextEditingController().obs;
-  var types = [
+  var types = <String>[
     'Electrical',
     'Electronics',
     'Furniture',
     'Computing',
     'Plumbing'
   ];
-  var blocks = [
+  var blocks = <String>[
     'Block A',
     'Block B',
     'Block C',
@@ -51,8 +51,7 @@ class ReportController extends GetxController {
 
   void clear() {
     name.value.text = "";
-    type.value = "";
-    block.value = "";
+
     serial_number.value.text = "";
     description.value.text = "";
   }
