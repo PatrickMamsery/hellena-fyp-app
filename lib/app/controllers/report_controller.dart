@@ -37,7 +37,7 @@ class ReportController extends GetxController {
       "property_name": name.value.text,
       "type": type.value,
       "property_location": block.value,
-      "serial_number": serial_number.value.text,
+      "serial_no": serial_number.value.text,
       "description": description.value.text,
     };
 

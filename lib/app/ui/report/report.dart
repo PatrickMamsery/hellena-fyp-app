@@ -21,7 +21,7 @@ class ReportPage extends GetView<ReportController> {
               icon: Icon(Icons.arrow_back)),
           title: Center(
               child: Text(
-            'Report a Damage',
+            'Report a Fault',
             style: TextStyle(color: Colors.white),
           ))),
       body: SafeArea(
@@ -42,6 +42,10 @@ class ReportPage extends GetView<ReportController> {
                 DropdownButton<String>(
                   // value: controller.type.value,
                   isExpanded: true,
+                  hint: Text(
+                    "Select the type of property ",
+                    style: TextStyle(color: Colors.blue),
+                  ),
                   items: controller.types.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -61,6 +65,10 @@ class ReportPage extends GetView<ReportController> {
                   child: DropdownButton<String>(
                     // value: controller.block.value,
                     isExpanded: true,
+                    hint: Text(
+                      "Select the location",
+                      style: TextStyle(color: Colors.blue),
+                    ),
                     items: controller.blocks.map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,

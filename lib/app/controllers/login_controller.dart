@@ -1,8 +1,11 @@
 import 'package:cpms_app/app/data/services/api_client.dart';
+import 'package:cpms_app/app/ui/maintanance/maintenance.dart';
+import 'package:cpms_app/app/ui/report/report.dart';
 import 'package:flutter/material.dart';
 
 import '../data/repository/login_repository.dart';
 import 'package:get/get.dart';
+import '../data/models/auth_response.dart';
 
 class LoginController extends GetxController {
   // final LoginRepository repository;
@@ -20,7 +23,7 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  void submit() {
+  void submit() async {
     var data = {
       "email": email.value.text,
       "password": password.value.text,
@@ -29,18 +32,12 @@ class LoginController extends GetxController {
     var apiClient = ApiClient(
       url: '/api/login',
     );
-    var res = apiClient.postData(data);
-    void submit() {
-      var data = {
-        "email": email.value.text,
-        "password": password.value.text,
-      };
-
-      var apiClient = ApiClient(
-        url: '/api/reports',
-      );
-      var res = apiClient.postData(data);
-      Get.snackbar("Sucess", "Login successfully", colorText: Colors.green);
+    var res = AuthResponse.fromJson(await apiClient.postData(data));
+    print(res.data!.user!.role!);
+    if (res.data!.user!.role! == "Officer") {
+      Get.to(() => MaintenancePage());
+    } else {
+      Get.to(() => ReportPage());
     }
   }
 }

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends GetView<LoginController> {
+  final LoginController controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     var sizedBox = SizedBox(
@@ -29,23 +30,28 @@ class LoginPage extends GetView<LoginController> {
                           Text("Welcome to"),
                           sizedBox,
                           Text(
-                            "CoICT Property Management System",
+                            "CoICT Fault Management System",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 19.0),
                           ),
                           sizedBox,
                           Text("Please login to your account"),
                           sizedBox,
-                          profile(title: "Email", subtitle: "Enter your email"),
+                          profile(
+                            title: "Email",
+                            subtitle: "Enter your email",
+                            controller: controller.email.value,
+                          ),
                           sizedBox,
                           profile(
                               title: "Password",
-                              subtitle: "Enter your password"),
+                              subtitle: "Enter your password",
+                              controller: controller.password.value),
                           sizedBox,
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blue),
-                              onPressed: () => Get.to(() => ReportPage()),
+                              onPressed: () => controller.submit(),
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                     top: 15, bottom: 15, left: 30, right: 30),
