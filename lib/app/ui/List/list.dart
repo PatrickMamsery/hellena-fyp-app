@@ -13,36 +13,35 @@ class ListPage extends GetView<ListController> {
     //bottomsheet with form to send message
 
     return Scaffold(
-        bottomNavigationBar: BottomBar(userId: controller.userId.value!),
-        appBar: AppBar(
-          title: Text('Reports'),
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          actions: [
-            IconButton(
-                onPressed: () => controller.getReports(),
-                icon: Icon(Icons.refresh)),
-            IconButton(
-                onPressed: () => sendSMS(),
-                icon: Icon(Icons.message))
-          ],
-        ),
-        body: SafeArea(
-            minimum: EdgeInsets.all(10),
-            child: Theme(
-              data:
-                  Theme.of(context).copyWith(dividerColor: Colors.transparent),
-              child: Obx(() {
-                return ListView.builder(
-                  controller: controller.scrollController,
-                  itemCount: controller.reports.length,
-                  itemBuilder: ((context, index) {
-                    var report = controller.reports[index];
-                    return setTile(report, textStyle);
-                  }),
-                );
+      bottomNavigationBar: BottomBar(userId: controller.userId.value),
+      appBar: AppBar(
+        title: Text('Reports'),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+              onPressed: () => controller.getReports(),
+              icon: Icon(Icons.refresh)),
+          IconButton(onPressed: () => sendSMS(), icon: Icon(Icons.message))
+        ],
+      ),
+      body: SafeArea(
+        minimum: EdgeInsets.all(10),
+        child: Theme(
+          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+          child: Obx(() {
+            return ListView.builder(
+              controller: controller.scrollController,
+              itemCount: controller.reports.length,
+              itemBuilder: ((context, index) {
+                var report = controller.reports[index];
+                return setTile(report, textStyle);
               }),
-            )));
+            );
+          }),
+        ),
+      ),
+    );
   }
 
   //bottom sheet with form to send message
@@ -50,29 +49,41 @@ class ListPage extends GetView<ListController> {
     Get.bottomSheet(
         Container(
           height: MediaQuery.of(Get.context!).size.height * 0.30,
-          padding: EdgeInsets.symmetric(vertical: 20,horizontal: 15),
+          padding: const EdgeInsets.symmetric(
+            vertical: 20,
+            horizontal: 15,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Remind the maintanace team", style: TextStyle(fontSize: 20)),
-              SizedBox(
+              const Text(
+                "Remind the maintanace team",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(
                 height: 10,
               ),
               TextField(
                 controller: controller.message.value,
                 maxLines: 3,
-                decoration: InputDecoration(
-                    hintText: "Enter your message",
-                    labelText: "Message",
-                    border: OutlineInputBorder()),
+                decoration: const InputDecoration(
+                  hintText: "Enter your message",
+                  labelText: "Message",
+                  border: OutlineInputBorder(),
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  IconButton(onPressed: () => controller.sendSMS(), icon: Icon(Icons.send,color:Colors.blue ,))
+                  IconButton(
+                      onPressed: () => controller.sendSMS(),
+                      icon: Icon(
+                        Icons.send,
+                        color: Colors.blue,
+                      ))
                 ],
               )
             ],
@@ -82,8 +93,7 @@ class ListPage extends GetView<ListController> {
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20)))
-    );
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))));
   }
 
   Card setTile(Report report, TextStyle textStyle) {
@@ -158,7 +168,6 @@ class ListPage extends GetView<ListController> {
               ),
             ),
           ),
-         
         ],
       ),
     );

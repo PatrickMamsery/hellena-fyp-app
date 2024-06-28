@@ -49,7 +49,7 @@ class ApiClient {
         throw Exception('Failed to load data');
       }
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

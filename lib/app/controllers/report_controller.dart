@@ -1,12 +1,12 @@
-import 'package:cpms_app/app/data/repository/report_repository.dart';
+// import 'package:cpms_app/app/data/repository/report_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../data/services/api_client.dart';
 
 class ReportController extends GetxController {
   // final ReportRepository repository;
-   dynamic argumentData = Get.arguments;
+  dynamic argumentData = Get.arguments;
   var userId = "".obs;
   var name = TextEditingController().obs;
   var type = Rx<String?>(null); // Allow type to be null initially
@@ -43,11 +43,12 @@ class ReportController extends GetxController {
       "description": description.value.text,
       "user_id": userId.value,
     };
-print(data);
+    print(data);
     var apiClient = ApiClient(
       url: '/api/reports',
     );
-    var res = apiClient.postData(data);
+    // var res = apiClient.postData(data);
+    apiClient.postData(data);
     Get.snackbar("Sucess", "Report Created");
     clear();
   }
