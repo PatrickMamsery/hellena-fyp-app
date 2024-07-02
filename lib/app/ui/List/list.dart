@@ -22,9 +22,7 @@ class ListPage extends GetView<ListController> {
             IconButton(
                 onPressed: () => controller.getReports(),
                 icon: Icon(Icons.refresh)),
-            IconButton(
-                onPressed: () => sendSMS(),
-                icon: Icon(Icons.message))
+            IconButton(onPressed: () => sendSMS(), icon: Icon(Icons.message))
           ],
         ),
         body: SafeArea(
@@ -49,12 +47,13 @@ class ListPage extends GetView<ListController> {
   void sendSMS() {
     Get.bottomSheet(
         Container(
-          height: MediaQuery.of(Get.context!).size.height * 0.30,
-          padding: EdgeInsets.symmetric(vertical: 20,horizontal: 15),
+          height: MediaQuery.of(Get.context!).size.height * 0.37,
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Remind the maintanace team", style: TextStyle(fontSize: 20)),
+              Text("Remind the maintanace team",
+                  style: TextStyle(fontSize: 20)),
               SizedBox(
                 height: 10,
               ),
@@ -72,7 +71,12 @@ class ListPage extends GetView<ListController> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  IconButton(onPressed: () => controller.sendSMS(), icon: Icon(Icons.send,color:Colors.blue ,))
+                  IconButton(
+                      onPressed: () => controller.sendSMS(),
+                      icon: Icon(
+                        Icons.send,
+                        color: Colors.blue,
+                      ))
                 ],
               )
             ],
@@ -82,8 +86,7 @@ class ListPage extends GetView<ListController> {
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20), topRight: Radius.circular(20)))
-    );
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))));
   }
 
   Card setTile(Report report, TextStyle textStyle) {
@@ -158,7 +161,6 @@ class ListPage extends GetView<ListController> {
               ),
             ),
           ),
-         
         ],
       ),
     );
