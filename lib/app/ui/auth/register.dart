@@ -1,4 +1,3 @@
-import 'package:cpms_app/app/controllers/login_controller.dart';
 import 'package:cpms_app/app/controllers/sign_in_controller.dart';
 import 'package:cpms_app/app/ui/auth/login.dart';
 import 'package:cpms_app/app/ui/auth/widgets/profile.dart';

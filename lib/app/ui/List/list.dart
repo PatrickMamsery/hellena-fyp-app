@@ -41,13 +41,42 @@ class ListPage extends GetView<ListController> {
                 );
               }),
             )));
+    //   bottomNavigationBar: BottomBar(userId: controller.userId.value),
+    //   appBar: AppBar(
+    //     title: Text('Reports'),
+    //     backgroundColor: Colors.blue,
+    //     foregroundColor: Colors.white,
+    //     actions: [
+    //       IconButton(
+    //           onPressed: () => controller.getReports(),
+    //           icon: Icon(Icons.refresh)),
+    //       IconButton(onPressed: () => sendSMS(), icon: Icon(Icons.message))
+    //     ],
+    //   ),
+    //   body: SafeArea(
+    //     minimum: EdgeInsets.all(10),
+    //     child: Theme(
+    //       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+    //       child: Obx(() {
+    //         return ListView.builder(
+    //           controller: controller.scrollController,
+    //           itemCount: controller.reports.length,
+    //           itemBuilder: ((context, index) {
+    //             var report = controller.reports[index];
+    //             return setTile(report, textStyle);
+    //           }),
+    //         );
+    //       }),
+    //     ),
+    //   ),
+    // );
   }
 
   //bottom sheet with form to send message
   void sendSMS() {
     Get.bottomSheet(
         Container(
-          height: MediaQuery.of(Get.context!).size.height * 0.37,
+          height: MediaQuery.of(Get.context!).size.height * 0.30,
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,12 +89,13 @@ class ListPage extends GetView<ListController> {
               TextField(
                 controller: controller.message.value,
                 maxLines: 3,
-                decoration: InputDecoration(
-                    hintText: "Enter your message",
-                    labelText: "Message",
-                    border: OutlineInputBorder()),
+                decoration: const InputDecoration(
+                  hintText: "Enter your message",
+                  labelText: "Message",
+                  border: OutlineInputBorder(),
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(

@@ -1,5 +1,4 @@
 import 'package:cpms_app/app/controllers/report_controller.dart';
-import 'package:cpms_app/app/ui/report/widgets/input.dart';
 import 'package:cpms_app/app/ui/shared/bottomBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,19 +7,21 @@ class ReportPage extends GetView<ReportController> {
   final ReportController controller = Get.put(ReportController());
   @override
   Widget build(BuildContext context) {
-    var sizedBox = SizedBox(
+    var sizedBox = const SizedBox(
       height: 20,
     );
     return Scaffold(
-        bottomNavigationBar: BottomBar(userId: controller.userId.value!,),
+      bottomNavigationBar: BottomBar(
+        userId: controller.userId.value,
+      ),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
           backgroundColor: Colors.blue,
           leading: IconButton(
               color: Colors.white,
               onPressed: () => Get.back(),
-              icon: Icon(Icons.arrow_back)),
-          title: Text(
+              icon: const Icon(Icons.arrow_back)),
+          title: const Text(
             'Report a Fault',
             style: TextStyle(color: Colors.white),
           )),
@@ -32,7 +33,8 @@ class ReportPage extends GetView<ReportController> {
               () {
                 return Container(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 40.0, left: 15.0, right: 15.0),
+                    padding: const EdgeInsets.only(
+                        top: 40.0, left: 15.0, right: 15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -46,16 +48,17 @@ class ReportPage extends GetView<ReportController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Property Type",
-                                style: TextStyle(fontSize: 16, color: Colors.blue[500])),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.blue[500])),
                             DropdownButton<String>(
                               underline: Container(
                                 height: 1.5,
                                 color: Colors.grey,
                               ),
-                              padding: EdgeInsets.only(bottom: 3),
+                              padding: const EdgeInsets.only(bottom: 3),
                               value: controller.type.value,
                               isExpanded: true,
-                              hint: Text(
+                              hint: const Text(
                                 "Select the type of property",
                               ),
                               items: controller.types.map((String value) {
@@ -76,16 +79,17 @@ class ReportPage extends GetView<ReportController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Property Location",
-                                style: TextStyle(fontSize: 16, color: Colors.blue[500])),
+                                style: TextStyle(
+                                    fontSize: 16, color: Colors.blue[500])),
                             DropdownButton<String>(
                               underline: Container(
                                 height: 1.5,
                                 color: Colors.grey,
                               ),
-                              padding: EdgeInsets.only(bottom: 3),
+                              padding: const EdgeInsets.only(bottom: 3),
                               value: controller.block.value,
                               isExpanded: true,
-                              hint: Text(
+                              hint: const Text(
                                 "Select the location",
                               ),
                               items: controller.blocks.map((String value) {
@@ -119,15 +123,15 @@ class ReportPage extends GetView<ReportController> {
                         Center(
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                elevation: 10,
-                                minimumSize: Size(250, 50),
-                                ),
+                              backgroundColor: Colors.blue,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              elevation: 10,
+                              minimumSize: const Size(250, 50),
+                            ),
                             onPressed: () => controller.submit(),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
+                            child: const Padding(
+                              padding: EdgeInsets.only(
                                   top: 15, bottom: 15, left: 30, right: 30),
                               child: Text(
                                 "Submit",
