@@ -89,7 +89,7 @@ class ListPage extends GetView<ListController> {
   void sendSMS() {
     Get.bottomSheet(
       Container(
-        height: MediaQuery.of(Get.context!).size.height * 0.30,
+        height: MediaQuery.of(Get.context!).size.height * 0.40,
         padding: const EdgeInsets.symmetric(
           vertical: 20,
           horizontal: 15,
