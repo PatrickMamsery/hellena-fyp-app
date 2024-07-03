@@ -15,6 +15,9 @@ class BottomNavigationController extends GetxController {
 
   void changePage(int index,String userId) {
     currentIndex.value = index;
-    Get.to(()=>pages[currentIndex.value],arguments: userId );
+    if(index == 0){
+      Get.off(()=>ReportPage(),arguments: userId);
+    }else{
+      Get.off(()=>ListPage(),arguments: userId);}
   }
 }

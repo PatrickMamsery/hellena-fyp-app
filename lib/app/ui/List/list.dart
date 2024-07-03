@@ -54,35 +54,6 @@ class ListPage extends GetView<ListController> {
         ),
       ),
     );
-    //   bottomNavigationBar: BottomBar(userId: controller.userId.value),
-    //   appBar: AppBar(
-    //     title: Text('Reports'),
-    //     backgroundColor: Colors.blue,
-    //     foregroundColor: Colors.white,
-    //     actions: [
-    //       IconButton(
-    //           onPressed: () => controller.getReports(),
-    //           icon: Icon(Icons.refresh)),
-    //       IconButton(onPressed: () => sendSMS(), icon: Icon(Icons.message))
-    //     ],
-    //   ),
-    //   body: SafeArea(
-    //     minimum: EdgeInsets.all(10),
-    //     child: Theme(
-    //       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-    //       child: Obx(() {
-    //         return ListView.builder(
-    //           controller: controller.scrollController,
-    //           itemCount: controller.reports.length,
-    //           itemBuilder: ((context, index) {
-    //             var report = controller.reports[index];
-    //             return setTile(report, textStyle);
-    //           }),
-    //         );
-    //       }),
-    //     ),
-    //   ),
-    // );
   }
 
   //bottom sheet with form to send message

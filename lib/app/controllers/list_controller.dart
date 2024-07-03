@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 // import '../data/repository/list_repository.dart';
 import '../data/services/api_client.dart';
 import '../data/models/report_response.dart';
+import '../controllers/bottom_navigation_controller.dart';
 
-class ListController extends GetxController {
+class ListController extends GetxController{
+  
+  // final BottomNavigationController bottomNavigationController = Get.find();
   dynamic argumentData = Get.arguments;
   var userId = "".obs;
   var sms = "".obs;
