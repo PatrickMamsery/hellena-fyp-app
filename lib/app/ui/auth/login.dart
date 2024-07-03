@@ -22,51 +22,80 @@ class LoginPage extends GetView<LoginController> {
                 left: 15.0,
                 right: 15.0,
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Welcome back!",
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Welcome back!",
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const Text(
-                      "COICT Fault Management System Account",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500,
+                      const Text(
+                        "COICT Fault Management System Account",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    sizedBox,
-                    sizedBox,
-                    sizedBox,
-                    sizedBox,
-                    const Text("Please login to your account"),
-                    sizedBox,
-                    profile(
-                      title: "Email",
-                      subtitle: "Enter your email",
-                      controller: controller.email.value,
-                    ),
-                    sizedBox,
-                    profile(
-                      title: "Password",
-                      subtitle: "Enter your password",
-                      controller: controller.password.value,
-                    ),
-                    sizedBox,
-                    sizedBox,
-                    ElevatedButton(
+                      sizedBox,
+                      sizedBox,
+                      sizedBox,
+                      sizedBox,
+                      const Text("Please login to your account"),
+                      sizedBox,
+                      profile(
+                        title: "Email",
+                        subtitle: "Enter your email",
+                        controller: controller.email.value,
+                      ),
+                      Obx(
+                        () => Text(
+                          controller.emailError.value,
+                          style: const TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                      sizedBox,
+                      profile(
+                          title: "Password",
+                          subtitle: "Enter your password",
+                          controller: controller.password.value),
+                      Obx(
+                        () => Text(
+                          controller.passwordError.value,
+                          style: const TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                      sizedBox,
+                      Obx(
+                        () => Text(
+                          controller.loginError.value,
+                          style: const TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                      sizedBox,
+                      ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                            minimumSize: const Size(150, 50),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            elevation: 0.0),
+                          backgroundColor: Colors.blue,
+                          minimumSize: const Size(
+                            150,
+                            50,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          elevation: 0.0,
+                        ),
                         onPressed: () => controller.submit(),
                         child: const Padding(
                           padding: EdgeInsets.only(
@@ -76,34 +105,37 @@ class LoginPage extends GetView<LoginController> {
                             right: 30,
                           ),
                           child: Text(
-                            "Register",
+                            "Login",
                             style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
                           ),
-                        )),
-                    // sizedBox,
-                    TextButton(
-                      onPressed: () {
-                        Get.to(() => RegisterPage());
-                      },
-                      child: const Row(
-                        children: [
-                          Text(
-                            "I don't have an account? ",
-                            style: TextStyle(color: Colors.black),
-                          ),
-                          Text(
-                            "Register",
-                            style: TextStyle(
-                              color: Colors.blue,
-                            ),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
+                      // sizedBox,
+                      TextButton(
+                        onPressed: () {
+                          Get.to(() => RegisterPage());
+                        },
+                        child: const Row(
+                          children: [
+                            Text(
+                              "I don't have an account? ",
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              "Register",
+                              style: TextStyle(
+                                color: Colors.blue,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
