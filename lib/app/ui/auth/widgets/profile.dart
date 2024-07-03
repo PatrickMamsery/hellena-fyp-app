@@ -22,15 +22,18 @@ class profile extends StatelessWidget {
               controller: controller,
               cursorColor: Colors.blue,
               decoration: InputDecoration(
-                  focusColor: Colors.blue,
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.blue), // Change color when focused
-                  ),
-                  hintText: subtitle,
-                  labelText: title,
-                  labelStyle: TextStyle(color: Colors.blue)),
+                focusColor: Colors.blue,
+                border: const OutlineInputBorder(),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.blue), // Change color when focused
+                ),
+                hintText: subtitle,
+                labelText: title,
+                labelStyle:const TextStyle(
+                  color: Colors.blue,
+                ),
+              ),
             ),
           ),
         ),
