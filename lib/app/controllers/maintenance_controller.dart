@@ -34,6 +34,7 @@ class MaintenanceController extends GetxController {
     var res = OfficerResponse.fromJson(await api.get());
     officer(res.user);
     reports(res.reports);
+    print("REPORTS_COUNT: ${reports.length} ");
     if (reports.length != 0) {
       isLoading(false);
     }
