@@ -52,4 +52,20 @@ class ApiClient {
       rethrow;
     }
   }
+
+// PUT method
+  Future<Map<String, dynamic>> putData(Map<String, dynamic> data) async {
+    print("URL:" + baseUrl + url);
+    try {
+      var response = await _dio().put(baseUrl + url, data: data);
+      print(response.toString());
+      if (response.statusCode == 200) {
+        return response.data as Map<String, dynamic>;
+      } else {
+        throw Exception('Failed to update data');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

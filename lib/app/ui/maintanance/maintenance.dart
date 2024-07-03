@@ -7,10 +7,21 @@ class MaintenancePage extends GetView<MaintenanceController> {
   final MaintenanceController controller = Get.put(MaintenanceController());
   @override
   Widget build(BuildContext context) {
-    var textStyle = TextStyle(fontWeight: FontWeight.w500, color: Colors.grey[900]);
+    var textStyle =
+        TextStyle(fontWeight: FontWeight.w500, color: Colors.grey[900]);
 
     return Scaffold(
-        appBar: AppBar(title: Text('Maintenance',),actions: [IconButton(onPressed: (){}, icon: Icon(Icons.refresh))],backgroundColor: Colors.blue[500], ),
+        appBar: AppBar(
+          title: Text(
+            'Maintenance',
+          ),
+          actions: [
+            IconButton(
+                onPressed: () => controller.refresh(),
+                icon: Icon(Icons.refresh))
+          ],
+          backgroundColor: Colors.blue[500],
+        ),
         body: SafeArea(
             minimum: EdgeInsets.all(10),
             child: Theme(
@@ -20,7 +31,7 @@ class MaintenancePage extends GetView<MaintenanceController> {
                   children: [
                     Center(
                       child: Container(
-                          margin: EdgeInsets.symmetric(vertical:  10.0),
+                          margin: EdgeInsets.symmetric(vertical: 10.0),
                           // height: MediaQuery.of(context).size.height * 0.2, // Covering 20% of the screen height
                           padding: EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
@@ -110,7 +121,8 @@ class MaintenancePage extends GetView<MaintenanceController> {
         side: BorderSide(color: color),
       ),
       child: ExpansionTile(
-        title: Text(report.propertyName!.capitalize!, style: TextStyle(fontSize: 16.0,fontWeight: FontWeight.w500)),
+        title: Text(report.propertyName!.capitalize!,
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
         subtitle: Text(
           report.status!,
           style: TextStyle(color: color),
@@ -138,10 +150,10 @@ class MaintenancePage extends GetView<MaintenanceController> {
                 ]),
                 TableRow(children: [
                   Text(
-                    "Allocatio",
+                    "Allocation",
                     style: textStyle,
                   ),
-                  Text("BLOCK-A")
+                  Text(report.propertyLocation!)
                 ]),
                 TableRow(children: [
                   Text(
@@ -168,6 +180,16 @@ class MaintenancePage extends GetView<MaintenanceController> {
             ),
           ),
           Container(
+            margin: EdgeInsets.symmetric(vertical: 8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                controller.updateReportStatus(
+                    report); // showStatusChangeDialog(report);
+              },
+              child: Text('Change Status'),
+            ),
+          ),
+          Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('assets/table.jpeg'), fit: BoxFit.fill),
@@ -175,6 +197,58 @@ class MaintenancePage extends GetView<MaintenanceController> {
           ),
         ],
       ),
+    );
+  }
+
+  void showStatusChangeDialog(Report report) {
+    Get.defaultDialog(
+      title: "Change Status",
+      content: Column(
+        children: [
+          RadioListTile<String>(
+            title: Text('Done'),
+            value: 'done',
+            groupValue: report.status,
+            onChanged: (value) {
+              report.status = value;
+              Get.back();
+            },
+          ),
+          RadioListTile<String>(
+            title: Text('Not done'),
+            value: 'Not done',
+            groupValue: report.status,
+            onChanged: (value) {
+              report.status = value;
+              Get.back();
+            },
+          ),
+          RadioListTile<String>(
+            title: Text('In progress'),
+            value: 'in progress',
+            groupValue: report.status,
+            onChanged: (value) {
+              report.status = value;
+              Get.back();
+            },
+          ),
+          RadioListTile<String>(
+            title: Text('Fixed'),
+            value: 'Fixed',
+            groupValue: report.status,
+            onChanged: (value) {
+              report.status = value;
+              Get.back();
+            },
+          ),
+        ],
+      ),
+      textConfirm: 'Update',
+      onConfirm: () {
+        Get.back();
+        // Call the controller method to update the status
+        controller.updateReportStatus(report);
+      },
     );
   }
 }

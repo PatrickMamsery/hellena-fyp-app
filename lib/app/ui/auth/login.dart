@@ -25,14 +25,18 @@ class LoginPage extends GetView<LoginController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Welcome back!",
-                                style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.bold)),
-                            Text(
-                                "COICT Fault Management System Account", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500 ),),
-                            sizedBox,
-                            sizedBox,
-                            sizedBox,
-                            sizedBox,
+                              style: TextStyle(
+                                  fontSize: 40, fontWeight: FontWeight.bold)),
+                          Text(
+                            "COICT Fault Management System Account",
+                            style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          sizedBox,
+                          sizedBox,
+                          sizedBox,
+                          sizedBox,
                           Text("Please login to your account"),
                           sizedBox,
                           profile(
@@ -40,46 +44,60 @@ class LoginPage extends GetView<LoginController> {
                             subtitle: "Enter your email",
                             controller: controller.email.value,
                           ),
+                          Obx(() => Text(
+                                controller.emailError.value,
+                                style: TextStyle(color: Colors.red),
+                              )),
                           sizedBox,
                           profile(
                               title: "Password",
                               subtitle: "Enter your password",
                               controller: controller.password.value),
+                          Obx(() => Text(
+                                controller.passwordError.value,
+                                style: TextStyle(color: Colors.red),
+                              )),
                           sizedBox,
+                          Obx(() => Text(
+                                controller.loginError.value,
+                                style: TextStyle(color: Colors.red),
+                              )),
                           sizedBox,
                           ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
-                                   minimumSize: Size(150, 50),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    elevation: 0.0
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blue,
+                                  minimumSize: Size(150, 50),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  elevation: 0.0),
+                              onPressed: () => controller.submit(),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 15, bottom: 15, left: 30, right: 30),
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                                onPressed: () => controller.submit(),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 15, bottom: 15, left: 30, right: 30),
-                                  child: Text(
-                                    "Register",
-                                    style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),
-                                  ),
-                                )),
-                            // sizedBox,
-                            TextButton(
-                              onPressed: () {
-                                Get.to(()=> RegisterPage());
-                              },
-                              child: Row(
-                                children: [
-                                  Text("I don't have an account? ",
-                                      style: TextStyle(color: Colors.black),),
-                                  Text("Register",
-                                      style: TextStyle(color: Colors.blue))
-                                ],
-                              ),
+                              )),
+                          // sizedBox,
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => RegisterPage());
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "I don't have an account? ",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                Text("Register",
+                                    style: TextStyle(color: Colors.blue))
+                              ],
                             ),
-                             
+                          ),
                         ],
                       ),
                     ),

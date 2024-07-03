@@ -22,11 +22,37 @@ class MaintenanceController extends GetxController {
     super.onInit();
   }
 
+  void refresh() {
+    isLoading(true);
+    getOfficer();
+    print("REFRESHED");
+    // update();
+  }
+
   void getOfficer() async {
     var api = ApiClient(url: "/api/officer/${officerId.value}");
     var res = OfficerResponse.fromJson(await api.get());
     officer(res.user);
     reports(res.reports);
+    if (reports.length != 0) {
+      isLoading(false);
+    }
     print(res);
+  }
+
+  void updateReportStatus(Report report) async {
+    var api = ApiClient(url: "/api/reports/${report.id}");
+    var data = {"status": "Fixed"};
+    var response = await api.putData(data);
+    refresh();
+    if (response['success']) {
+      // Assuming the API returns the updated report
+      var updatedReport = Report.fromJson(response['data']);
+      var index = reports.indexWhere((r) => r.id == updatedReport.id);
+      if (index != -1) {
+        reports[index] = updatedReport;
+        reports.refresh();
+      }
+    }
   }
 }
